@@ -1,7 +1,11 @@
 {
   "https://cdn.skypack.dev/-/canvas-confetti@v1.4.0-POmgSMO0U5q84otJfYlN/dist=es2019,mode=imports/optimized/canvas-confetti.js": { "integrity": "sha512-CQvMBYvw2oXoavqkNwjHzIBuL0at7CkHRlcJp7WZeXKOMAiCotkJ5ud2yHUAkmQmRmN7kl3x9kW8aKaErG3uLQ==", "contentType": "application/javascript; charset=utf-8" },
+  "https://cdn.skypack.dev/-/highlight.js@v11.4.0-Bo6djeMRU9u03QLsHHfL/dist=es2019,mode=imports/optimized/common/core-be139b8f.js": { "integrity": "sha512-VrkkxEBuNT6CVP/Jt7U9bXrt4FemfzqYs37qWDiBy1saI3PJ4qyNy8Jr1HK27QSYYh/b0camuOxhONafWk8ptg==", "contentType": "application/javascript; charset=utf-8" },
+  "https://cdn.skypack.dev/-/highlight.js@v11.4.0-Bo6djeMRU9u03QLsHHfL/dist=es2019,mode=imports/optimized/common/vbnet-d218f8eb.js": { "integrity": "sha512-0iQgrJFmHzEUhWUJoHYidYpVsZZSm+PMu0+NSy/dPMhVoL+rhQSLsiZxLepe1qRz6DeKC+kfkdryTBZik4paKg==", "contentType": "application/javascript; charset=utf-8" },
+  "https://cdn.skypack.dev/-/highlight.js@v11.4.0-Bo6djeMRU9u03QLsHHfL/dist=es2019,mode=imports/optimized/highlightjs.js": { "integrity": "sha512-xc0CDni75QkPXkrEuSAeXYUPi5n4ithHl/VkgCs1P3/2LfuKrIuSgTL2aKpT2Nm/HdOioQR4+EKqlP392/d4ZA==", "contentType": "application/javascript; charset=utf-8" },
   "https://cdn.skypack.dev/-/marked@v4.0.8-PIu3r0zcllyQAop21h7m/dist=es2019,mode=imports/optimized/marked.js": { "integrity": "sha512-L3HB/j7NrujHfdk6b7Yt3pgBnmRcEKPNaZJYdLvU7wScAz8cgYfzXAn7/rQh2n5EpOqrxKtJt1Iob8584XgRmg==", "contentType": "application/javascript; charset=utf-8" },
   "https://cdn.skypack.dev/canvas-confetti": { "integrity": "sha512-u8eX5BcoJhw6bt7ArFiynDqpYoADBSvY/xqUNhFfHtO3BvWIIzJJFj8He3SIdsayNyJdz2sDt9V47m6f2hppCQ==", "contentType": "application/javascript; charset=utf-8" },
+  "https://cdn.skypack.dev/highlight.js": { "integrity": "sha512-FUf4vV9iEMlBAUsbh5kac/0hQhPmwphntKU7E4xBI/q8K2A557pn3xYqYywB4i2L80j9I1lz+eyXEGVpGEcj5w==", "contentType": "application/javascript; charset=utf-8" },
   "https://cdn.skypack.dev/marked": { "integrity": "sha512-79T6ei7yQ6dFvJdcIXQW79f+S6C0FUqjAY56lAtuOPbJIl4/jRS3mojZb13tTcQzJLagrKLYVP7qzPHfkq00Ug==", "contentType": "application/javascript; charset=utf-8" },
   "version": 1
 }
