@@ -70,7 +70,7 @@ const Header = () => {
               </svg>
             </a>
             <button
-              aria-label="Toggle dark mode"
+              aria-label="Toggle theme"
               onClick={() =>
                 setTheme(resolvedTheme === 'dark' ? 'light' : 'dark')
               }
