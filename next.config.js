@@ -14,17 +14,23 @@ const nextConfig = {
   },
 };
 
-const withMDX = require('@next/mdx')({
-  extension: /\.mdx?$/,
-  options: {
-    remarkPlugins: [],
-    rehypePlugins: [],
-    // If you use `MDXProvider`, uncomment the following line.
-    // providerImportSource: "@mdx-js/react",
-  },
-});
+// const withMDX = require('@next/mdx')({
+//   extension: /\.mdx?$/,
+//   options: {
+//     remarkPlugins: [],
+//     rehypePlugins: [],
+//     // If you use `MDXProvider`, uncomment the following line.
+//     // providerImportSource: "@mdx-js/react",
+//   },
+// });
 
-module.exports = withMDX({
+// module.exports = withMDX({
+//   ...nextConfig,
+//   pageExtensions: ['js', 'jsx', 'md', 'mdx'],
+// });
+
+const { withContentlayer } = require('next-contentlayer');
+
+module.exports = withContentlayer()({
   ...nextConfig,
-  pageExtensions: ['js', 'jsx', 'md', 'mdx'],
 });

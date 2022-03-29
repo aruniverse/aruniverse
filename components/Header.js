@@ -34,8 +34,8 @@ const Header = () => {
           <div className="ml-[-0.60rem]">
             <NavItem href="/" text="Home" />
             <NavItem href="/resume" text="Resume" />
-            <NavItem href="/projects" text="Projects" />
-            {/* <NavItem href="/blog" text="Blog" /> */}
+            {/* <NavItem href="/projects" text="Projects" /> */}
+            <NavItem href="/blogs" text="Blogs" />
           </div>
 
           <div className="flex flex-1 justify-end">

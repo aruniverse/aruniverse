@@ -1,0 +1,50 @@
+---
+title: 'adblock-detect-react'
+date: '2021-03-18'
+---
+
+# adblock-detect-react
+
+Lightweight [npm package](https://www.npmjs.com/package/adblock-detect-react) that detects if a user is using an adblocker.
+
+## stats
+
+import { useState, useEffect } from 'react';
+export const Stats = () => {
+  const [downloads, setDownloads] = useState(null);
+  const [stargazers, setStargazers] = useState(null);
+  useEffect(() => {
+    const fetchStats = () => {
+      fetch('https://api.npmjs.org/downloads/point/last-week/adblock-detect-react')
+        .then((result) => result.json())
+        .then((data) => setDownloads(data.downloads))
+      fetch('https://api.github.com/repos/aruniverse/adblock-detect-react/stargazers')
+        .then((result) => result.json())
+        .then((data) => setStargazers(data.length))
+    }
+    fetchStats()
+  }, [])
+  if (!downloads || !stargazers) return <p>Fetching stats...</p>;
+  return <div><p>{downloads} weekly downloads</p><p>{stargazers} GitHub stargazers</p></div>
+}
+
+<Stats />
+
+## example usage
+
+```jsx
+import React from 'react';
+import { useDetectAdBlock } from 'adblock-detect-react';
+
+const SomeFunctionalComponent = () => {
+  const adBlockDetected = useDetectAdBlock();
+
+  React.useEffect(() => {
+    if (adBlockDetected) {
+      window.alert('ad block detected');
+    }
+  }, []);
+
+  return <div>{adBlockDetected && 'Hello Ad Blocked Page'}</div>;
+};
+```
