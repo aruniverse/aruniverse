@@ -8,4 +8,75 @@ tags:
 
 # CoSpace
 
-Check it out [here](https://github.com/aruniverse/cospace)
+<a href="https://www.npmjs.com/package/cospace" target="_blank">CoSpace</a>, a thin cli wrapper around <a href="https://pnpm.io/workspaces" target="_blank">pnpm workspaces</a> to help link multiple (mono)repos together.
+
+While working across multiple monorepos I found myself wanting to quickly test out changes I was making in my platform's sdk with one of our products. I was never satisifed with `npm link` or `yalc` or other solutions; and there were way too many packages to link together. I wished there was an easy way to build a monorepo consisting of other monorepos, a megarepo if you will, and link everything together. That way I could quickly prototype and test changes seamlessly. And that's how `CoSpace` was born.
+
+## Powered by
+
+- [vscode multi-root workspaces](https://code.visualstudio.com/docs/editor/multi-root-workspaces)
+- [pnpm workspaces](https://pnpm.io/workspaces)
+- [lage](https://microsoft.github.io/lage/)
+
+## stats
+
+import { useState, useEffect } from 'react';
+export const Stats = ({ pkg }) => {
+  const [downloads, setDownloads] = useState(null);
+  const [stargazers, setStargazers] = useState(null);
+  useEffect(() => {
+    const fetchStats = () => {
+      fetch(`https://api.npmjs.org/downloads/point/last-week/${pkg}`)
+        .then((result) => result.json())
+        .then((data) => setDownloads(data.downloads));
+      fetch(`https://api.github.com/repos/aruniverse/${pkg}/stargazers`)
+        .then((result) => result.json())
+        .then((data) => setStargazers(data.length));
+    };
+    fetchStats();
+  }, [pkg]);
+  if (!downloads || !stargazers) return <p>Fetching stats...</p>;
+  return (
+    <div>
+      <p>{downloads} weekly downloads</p>
+      <p>{stargazers} GitHub stargazers</p>
+    </div>
+  );
+};
+
+<Stats pkg="cospace" />
+
+
+## Create a new `CoSpace`
+
+#### Initialize
+
+```bash
+npx cospace@latest init my-cospace
+```
+
+#### Link your (mono)repos
+
+```bash
+cd my-cospace
+```
+
+1. Clone all the repos you want to link together under the `repos` sub directory.
+
+1. Update the `pnpm-workspace.yaml` file with all the packages you want to add to your `CoSpace`. By default all packages under the `repos` sub directory will be added to your `CoSpace`; you will probably want to be more specific and build/link only what you need.
+
+1. Update the `cospace.code-workspace` file with all the repos you want to add to your [vscode multi-root workspace](https://code.visualstudio.com/docs/editor/multi-root-workspaces).
+
+1. Run `pnpm exec cospace override` to automatically update the `pnpm.overrides` section of the `CoSpace`'s `package.json`, to link all the dependencies together with the copy found in the workspace. This will ignore [semver](https://semver.org/) and always use the local package version from the workspace, very useful for when you have pre-release versions of packages in your workspace.
+
+1. Run `pnpm install` to install all the packages you've added to your `CoSpace`.
+
+1. Run `pnpm build` to build all the packages you've added to your `CoSpace` using your monorepo task runner. By default we use [lage](https://microsoft.github.io/lage/), but [turborepo](https://turborepo.org/docs) should work as well.
+
+
+For more information visit the <a href="https://aruniverse.github.io/cospace/" target="_blank">docs site</a>.
+
+
+## example usage
+
+- <a href="https://github.com/aruniverse/itwin-cospace" target="_blank">itwin-cospace</a>, an example of a `CoSpace` to help develop with the iTwin Platform.

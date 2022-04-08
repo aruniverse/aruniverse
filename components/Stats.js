@@ -1,14 +1,3 @@
----
-title: 'adblock-detect-react'
-date: '2021-03-18'
----
-
-# adblock-detect-react
-
-A lightweight <a href="https://www.npmjs.com/package/adblock-detect-react" target="_blank">npm package</a> that detects if a client is using an adblocker.
-
-## stats
-
 import { useState, useEffect } from 'react';
 export const Stats = ({ pkg }) => {
   const [downloads, setDownloads] = useState(null);
@@ -32,28 +21,3 @@ export const Stats = ({ pkg }) => {
     </div>
   );
 };
-
-<Stats pkg="adblock-detect-react" />
-
-## demo
-
-<a href="https://adblock-detect-react-test.netlify.app/" target="_blank">live demo site</a>
-
-## example usage
-
-```jsx
-import React from 'react';
-import { useDetectAdBlock } from 'adblock-detect-react';
-
-const SomeFunctionalComponent = () => {
-  const adBlockDetected = useDetectAdBlock();
-
-  React.useEffect(() => {
-    if (adBlockDetected) {
-      window.alert('ad block detected');
-    }
-  }, []);
-
-  return <div>{adBlockDetected && 'Hello Ad Blocked Page'}</div>;
-};
-```
