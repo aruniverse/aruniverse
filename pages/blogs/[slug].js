@@ -1,13 +1,13 @@
 import Head from 'next/head';
 import Link from 'next/link';
 // import { format, parseISO } from "date-fns";
-import { allBlogPosts } from 'contentlayer/generated';
+import { allBlogs } from 'contentlayer/generated';
 import Container from '../../components/Container';
 import { useMDXComponent } from 'next-contentlayer/hooks';
 
 export function getStaticPaths() {
   return {
-    paths: allBlogPosts.map(({ slug }) => ({ params: { slug } })),
+    paths: allBlogs.map(({ slug }) => ({ params: { slug } })),
     fallback: false,
   };
 }
@@ -15,7 +15,7 @@ export function getStaticPaths() {
 export function getStaticProps({ params }) {
   return {
     props: {
-      post: allBlogPosts.find((post) => post.slug === params.slug),
+      post: allBlogs.find((post) => post.slug === params.slug),
     },
   };
 }

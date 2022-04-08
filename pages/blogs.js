@@ -1,10 +1,9 @@
 import Link from 'next/link';
 import Container from '../components/Container';
-// import { allBlogPosts } from 'contentlayer/generated';
+import { allBlogs } from 'contentlayer/generated';
 
 export function getStaticProps() {
-  const allBlogPosts = []
-  const posts = allBlogPosts
+  const posts = allBlogs
     .map(({ slug, title, date }) => ({ slug, title, date }))
     .sort((a, b) => Number(new Date(b.date)) - Number(new Date(a.date)));
 
