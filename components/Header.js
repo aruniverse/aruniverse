@@ -1,7 +1,49 @@
+/* eslint-disable @next/next/no-html-link-for-pages */
 import { useState, useEffect } from 'react';
 import NextLink from 'next/link';
 import { useRouter } from 'next/router';
 import { useTheme } from 'next-themes';
+
+function MobileNav({ open, setOpen }) {
+  return (
+    <div
+      className={`absolute top-0 left-0 h-screen w-screen transform bg-white ${
+        open ? '-translate-x-0' : '-translate-x-full'
+      } drop-shadow-md filter transition-transform duration-300 ease-in-out `}
+    >
+      <div className="flex h-20 items-center justify-center bg-white drop-shadow-md filter">
+        {' '}
+        <a className="text-xl font-semibold" href="/">
+          LOGO
+        </a>
+      </div>
+      <div className="ml-4 flex flex-col">
+        <a
+          className="my-4 text-xl font-medium"
+          href="/about"
+          onClick={() =>
+            setTimeout(() => {
+              setOpen(!open);
+            }, 100)
+          }
+        >
+          About
+        </a>
+        <a
+          className="my-4 text-xl font-normal"
+          href="/contact"
+          onClick={() =>
+            setTimeout(() => {
+              setOpen(!open);
+            }, 100)
+          }
+        >
+          Contact
+        </a>
+      </div>
+    </div>
+  );
+}
 
 const NavItem = ({ href, text }) => {
   const router = useRouter();
@@ -14,7 +56,7 @@ const NavItem = ({ href, text }) => {
           isActive
             ? 'font-semibold text-gray-800 dark:text-gray-200'
             : 'font-normal text-gray-600 dark:text-gray-400'
-        } hidden rounded-lg p-1 transition-all hover:bg-gray-200 dark:hover:bg-gray-800 sm:px-3 sm:py-2 md:inline-block`}
+        } hidden rounded-lg hover:bg-gray-200 dark:hover:bg-gray-800 sm:inline-block sm:px-3 sm:py-2`}
       >
         <span className="capsize">{text}</span>
       </a>
@@ -25,12 +67,14 @@ const NavItem = ({ href, text }) => {
 const Header = () => {
   const { resolvedTheme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
+  const [open, setOpen] = useState(false);
   useEffect(() => setMounted(true), []);
 
   return (
     <div className="flex flex-col justify-center p-4">
       <nav>
         <div className="flex">
+          <MobileNav open={open} setOpen={setOpen} />
           <div className="ml-[-0.60rem]">
             <NavItem href="/" text="Home" />
             <NavItem href="/resume" text="Resume" />
@@ -56,7 +100,7 @@ const Header = () => {
             </a>
             <a
               aria-label="GitHub Source"
-              href="https://github.com/aruniverse/aruniverse"
+              href="https://github.com/aruniverse"
               className="py-2 px-4"
             >
               <svg

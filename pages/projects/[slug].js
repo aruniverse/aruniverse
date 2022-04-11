@@ -1,6 +1,4 @@
 import Head from 'next/head';
-import Link from 'next/link';
-// import { format, parseISO } from "date-fns";
 import { allProjects } from 'contentlayer/generated';
 import Container from '../../components/Container';
 import { useMDXComponent } from 'next-contentlayer/hooks';
@@ -28,7 +26,17 @@ const PostLayout = ({ post }) => {
       <Head>
         <title>{post.title}</title>
       </Head>
-      <article className="prose prose-slate mt-4 w-full max-w-none dark:prose-invert prose-a:text-blue-500 hover:prose-a:text-blue-600">
+      <article className="prose prose-slate w-full max-w-none prose-a:text-blue-500 hover:prose-a:text-blue-600 dark:prose-invert">
+        <div className="flex">
+          <h1>{post.title}</h1>
+          <h4 className="flex flex-auto justify-end sm:flex-1">
+            {new Intl.DateTimeFormat(undefined, {
+              month: 'long',
+              day: 'numeric',
+              year: 'numeric',
+            }).format(new Date(post.date))}
+          </h4>
+        </div>
         <MDXComponent />
       </article>
     </Container>

@@ -5,6 +5,22 @@ import rehypeCodeTitles from 'rehype-code-titles';
 import rehypeAutolinkHeadings from 'rehype-autolink-headings';
 import rehypeHighlight from 'rehype-highlight';
 
+const commonFields = {
+  title: {
+    type: 'string',
+    description: 'The title of the post',
+    required: true,
+  },
+  date: {
+    type: 'string',
+    description: 'The date of the post',
+    required: true,
+  },
+  // tags: {
+  //   type: 'list',
+  // },
+};
+
 const computedFields = {
   slug: {
     type: 'string',
@@ -17,19 +33,7 @@ const Projects = defineDocumentType(() => ({
   filePathPattern: 'projects/**/*.mdx',
   contentType: 'mdx',
   fields: {
-    title: {
-      type: 'string',
-      description: 'The title of the post',
-      required: true,
-    },
-    date: {
-      type: 'string',
-      description: 'The date of the post',
-      required: true,
-    },
-    // tags: {
-    //   type: 'list',
-    // },
+    ...commonFields,
   },
   computedFields,
 }));
@@ -39,19 +43,7 @@ const Blogs = defineDocumentType(() => ({
   filePathPattern: 'blogs/**/*.mdx',
   contentType: 'mdx',
   fields: {
-    title: {
-      type: 'string',
-      description: 'The title of the post',
-      required: true,
-    },
-    date: {
-      type: 'string',
-      description: 'The date of the post',
-      required: true,
-    },
-    // tags: {
-    //   type: 'list',
-    // },
+    ...commonFields,
   },
   computedFields,
 }));

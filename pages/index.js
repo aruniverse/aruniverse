@@ -6,7 +6,9 @@ const Home = () => {
     <Container>
       <div className="flex flex-col-reverse items-start sm:flex-row">
         <div className="flex-grow pr-8">
-          <h1 className="mb-1 text-4xl font-bold md:text-5xl">Arun George</h1>
+          <h1 className="mb-2 text-4xl font-bold sm:text-5xl md:text-6xl">
+            Arun George
+          </h1>
           <h2 className="text-l mb-4 text-gray-700 dark:text-gray-200">
             Software Engineer II at{' '}
             <a

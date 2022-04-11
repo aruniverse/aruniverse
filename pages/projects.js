@@ -12,20 +12,23 @@ export function getStaticProps() {
 
 const Project = (post) => {
   return (
-    <div className="mb-6">
-      <h2 className="text-lg">
-        <Link href={`/projects/${post.slug}`}>
-          <a className="text-blue-700 hover:text-blue-900">{post.title}</a>
-        </Link>
-      </h2>
-    </div>
+    <li className="mb-6">
+      <Link href={`/projects/${post.slug}`}>
+        <a className="text-2xl text-blue-700 hover:text-blue-900">
+          {post.title}
+        </a>
+      </Link>
+      <div className="flex flex-1 justify-end">
+        {new Intl.DateTimeFormat().format(new Date(post.date))}
+      </div>
+    </li>
   );
 };
 
 const Projects = ({ posts }) => {
   return (
     <Container>
-      <h1 className="text-xl">Projects</h1>
+      <h1 className="mb-2 text-3xl font-bold md:text-4xl">Projects</h1>
       <br />
       {posts.map((post, id) => (
         <Project key={id} {...post} />

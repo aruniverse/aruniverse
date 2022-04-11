@@ -12,9 +12,9 @@ const Container = ({ children }) => {
         <meta name="twitter:site" content="@aruniverse" /> */}
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <div className="container mx-auto flex h-full max-w-screen-lg flex-col px-8 py-2">
+      <div className="container mx-auto flex h-full max-w-screen-lg flex-col sm:px-8 px-6 py-2">
         <Header />
-        <main id="skip" className="flex-grow justify-center px-4 py-2">
+        <main id="skip" className="flex-grow justify-center sm:px-4 pt-2 pb-4 px-0">
           {children}
         </main>
         <Footer />
