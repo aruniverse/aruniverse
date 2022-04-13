@@ -14,7 +14,7 @@ const Project = (post) => {
   return (
     <li className="mb-6">
       <Link href={`/projects/${post.slug}`}>
-        <a className="text-2xl text-blue-700 hover:text-blue-900">
+        <a className="text-xl text-blue-700 hover:text-blue-900">
           {post.title}
         </a>
       </Link>

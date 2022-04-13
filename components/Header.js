@@ -4,46 +4,83 @@ import NextLink from 'next/link';
 import { useRouter } from 'next/router';
 import { useTheme } from 'next-themes';
 
-function MobileNav({ open, setOpen }) {
+function MobileNav() {
+  const [open, setOpen] = useState(false);
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => setMounted(true), []);
+  const toggleMobileNav = () => {
+    setOpen(!open);
+    document.body.style.overflow = open ? '' : 'hidden';
+  };
+
+  useEffect(
+    () => () => {
+      document.body.style.overflow = '';
+    },
+    []
+  );
+
   return (
-    <div
-      className={`absolute top-0 left-0 h-screen w-screen transform bg-white ${
-        open ? '-translate-x-0' : '-translate-x-full'
-      } drop-shadow-md filter transition-transform duration-300 ease-in-out `}
-    >
-      <div className="flex h-20 items-center justify-center bg-white drop-shadow-md filter">
-        {' '}
-        <a className="text-xl font-semibold" href="/">
-          LOGO
-        </a>
-      </div>
-      <div className="ml-4 flex flex-col">
-        <a
-          className="my-4 text-xl font-medium"
-          href="/about"
-          onClick={() =>
-            setTimeout(() => {
-              setOpen(!open);
-            }, 100)
-          }
+    <>
+      <button
+        aria-label="Toggle mobile nav"
+        onClick={toggleMobileNav}
+        className="h-10 py-2 px-4 sm:hidden"
+        key="mobile-nav-button"
+      >
+        {/* {mounted && (
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            className="h-6 w-6 text-gray-800 dark:text-gray-200"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d={
+                open
+                  ? 'M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z'
+                  : 'M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z'
+              }
+            />
+          </svg>
+        )} */}
+        {open ? '-' : '+'}
+      </button>
+      {open && (
+        <div
+          className="flex h-screen w-screen flex-col bg-gray-200 dark:bg-gray-800 "
+          style={{ zIndex: 500 }}
         >
-          About
-        </a>
-        <a
-          className="my-4 text-xl font-normal"
-          href="/contact"
-          onClick={() =>
-            setTimeout(() => {
-              setOpen(!open);
-            }, 100)
-          }
-        >
-          Contact
-        </a>
-      </div>
-    </div>
+          <MobileNavItem href="/" text="Home" />
+          <MobileNavItem href="/resume" text="Resume" />
+          <MobileNavItem href="/projects" text="Projects" />
+        </div>
+      )}
+    </>
   );
 }
+
+const MobileNavItem = ({ href, text }) => {
+  const router = useRouter();
+  const isActive = router.asPath === href;
+
+  return (
+    <NextLink href={href}>
+      <a
+        className={`${
+          isActive
+            ? 'font-semibold text-gray-800 dark:text-gray-200'
+            : 'font-normal text-gray-600 dark:text-gray-400'
+        } rounded-lg px-3 py-2`}
+      >
+        <span className="capsize">{text}</span>
+      </a>
+    </NextLink>
+  );
+};
 
 const NavItem = ({ href, text }) => {
   const router = useRouter();
@@ -56,7 +93,7 @@ const NavItem = ({ href, text }) => {
           isActive
             ? 'font-semibold text-gray-800 dark:text-gray-200'
             : 'font-normal text-gray-600 dark:text-gray-400'
-        } hidden rounded-lg hover:bg-gray-200 dark:hover:bg-gray-800 sm:inline-block sm:px-3 sm:py-2`}
+        } hidden rounded-lg sm:inline-block sm:px-3 sm:py-2 sm:hover:bg-gray-200 sm:dark:hover:bg-gray-800`}
       >
         <span className="capsize">{text}</span>
       </a>
@@ -67,14 +104,13 @@ const NavItem = ({ href, text }) => {
 const Header = () => {
   const { resolvedTheme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
-  const [open, setOpen] = useState(false);
   useEffect(() => setMounted(true), []);
 
   return (
-    <div className="flex flex-col justify-center p-4">
+    <div className="flex justify-center p-4 sm:flex-col">
       <nav>
+        <MobileNav />
         <div className="flex">
-          <MobileNav open={open} setOpen={setOpen} />
           <div className="ml-[-0.60rem]">
             <NavItem href="/" text="Home" />
             <NavItem href="/resume" text="Resume" />
@@ -86,7 +122,7 @@ const Header = () => {
             <a
               aria-label="Email"
               href="mailto:aruniverse@pm.me"
-              className="py-2 px-4"
+              className="h-10 py-2 px-4"
             >
               <svg
                 aria-hidden="true"
@@ -101,7 +137,7 @@ const Header = () => {
             <a
               aria-label="GitHub Source"
               href="https://github.com/aruniverse"
-              className="py-2 px-4"
+              className="h-10 py-2 px-4"
             >
               <svg
                 aria-hidden="true"
@@ -121,7 +157,8 @@ const Header = () => {
               onClick={() =>
                 setTheme(resolvedTheme === 'dark' ? 'light' : 'dark')
               }
-              className="py-2 px-4"
+              className="h-10 py-2 px-4"
+              style={{ zIndex: 600 }}
             >
               {mounted && (
                 <svg

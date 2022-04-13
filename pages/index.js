@@ -20,7 +20,7 @@ const Home = () => {
             </a>
           </h2>
           <p className="mb-4 text-gray-600 dark:text-gray-400">
-            {'Full Stack Developer'}
+            {'Passionate Full Stack Developer looking for challenging and meaningful problems to solve.'}
           </p>
           <p className="mb-16 text-gray-600 dark:text-gray-400">
             {
