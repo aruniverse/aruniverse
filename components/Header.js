@@ -3,11 +3,10 @@ import { useState, useEffect } from 'react';
 import NextLink from 'next/link';
 import { useRouter } from 'next/router';
 import { useTheme } from 'next-themes';
+import { MobileModal } from './MobileModal';
 
 function MobileNav() {
   const [open, setOpen] = useState(false);
-  const [mounted, setMounted] = useState(false);
-  useEffect(() => setMounted(true), []);
   const toggleMobileNav = () => {
     setOpen(!open);
     document.body.style.overflow = open ? '' : 'hidden';
@@ -28,36 +27,27 @@ function MobileNav() {
         className="h-10 py-2 px-4 sm:hidden"
         key="mobile-nav-button"
       >
-        {/* {mounted && (
-          <svg
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            className="h-6 w-6 text-gray-800 dark:text-gray-200"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d={
-                open
-                  ? 'M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z'
-                  : 'M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z'
-              }
-            />
-          </svg>
-        )} */}
-        {open ? '-' : '+'}
+        <svg
+          className="h-5 w-5"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+          strokeWidth={2}
+          style={{ transform: open && 'rotate(90deg)' }}
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            d="M4 6h16M4 12h16M4 18h16"
+          />
+        </svg>
       </button>
       {open && (
-        <div
-          className="flex h-screen w-screen flex-col bg-gray-200 dark:bg-gray-800 "
-          style={{ zIndex: 500 }}
-        >
+        <MobileModal>
           <MobileNavItem href="/" text="Home" />
           <MobileNavItem href="/resume" text="Resume" />
           <MobileNavItem href="/projects" text="Projects" />
-        </div>
+        </MobileModal>
       )}
     </>
   );
@@ -74,7 +64,7 @@ const MobileNavItem = ({ href, text }) => {
           isActive
             ? 'font-semibold text-gray-800 dark:text-gray-200'
             : 'font-normal text-gray-600 dark:text-gray-400'
-        } rounded-lg px-3 py-2`}
+        } rounded-lg p-3 text-center text-xl`}
       >
         <span className="capsize">{text}</span>
       </a>
@@ -109,15 +99,13 @@ const Header = () => {
   return (
     <div className="flex justify-center p-4 sm:flex-col">
       <nav>
-        <MobileNav />
         <div className="flex">
-          <div className="ml-[-0.60rem]">
+          <div className="ml-[-0.60rem]" style={{ zIndex: 600 }}>
+            <MobileNav />
             <NavItem href="/" text="Home" />
             <NavItem href="/resume" text="Resume" />
             <NavItem href="/projects" text="Projects" />
-            {/* <NavItem href="/blogs" text="Blogs" /> */}
           </div>
-
           <div className="flex flex-1 justify-end">
             <a
               aria-label="Email"
