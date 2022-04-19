@@ -4,11 +4,9 @@ import Container from '../components/Container';
 const Home = () => {
   return (
     <Container>
-      <div className="flex flex-col-reverse items-start sm:flex-row">
+      <div className="flex flex-col-reverse items-center sm:flex-row">
         <div className="flex-grow pr-8">
-          <h1 className="mb-2 text-4xl font-bold sm:text-5xl">
-            Arun George
-          </h1>
+          <h1 className="mb-2 text-4xl font-bold sm:text-5xl">Arun George</h1>
           <h2 className="text-l mb-4 text-gray-700 dark:text-gray-200">
             Software Engineer II at{' '}
             <a
@@ -20,7 +18,9 @@ const Home = () => {
             </a>
           </h2>
           <p className="mb-4 text-gray-600 dark:text-gray-400">
-            {'Passionate Full Stack Developer looking for challenging and meaningful problems to solve.'}
+            {
+              'Passionate Full Stack Developer looking for challenging and meaningful problems to solve.'
+            }
           </p>
           <p className="mb-16 text-gray-600 dark:text-gray-400">
             {
@@ -29,7 +29,7 @@ const Home = () => {
           </p>
         </div>
 
-        <div className="mb-8 w-[176px] drop-shadow-2xl sm:w-[176px]">
+        <div className="mb-8 w-[200px] drop-shadow-2xl">
           <Image
             alt="Arun George"
             height={400}

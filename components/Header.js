@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import NextLink from 'next/link';
 import { useRouter } from 'next/router';
 import { useTheme } from 'next-themes';
-import { MobileModal } from './MobileModal';
+import { FullScreenMobileModal } from './Modal';
 
 function MobileNav() {
   const [open, setOpen] = useState(false);
@@ -26,9 +26,10 @@ function MobileNav() {
         onClick={toggleMobileNav}
         className="h-10 py-2 px-4 sm:hidden"
         key="mobile-nav-button"
+        style={{ zIndex: 600 }}
       >
         <svg
-          className="h-5 w-5"
+          className="h-6 w-6"
           fill="none"
           viewBox="0 0 24 24"
           stroke="currentColor"
@@ -43,11 +44,11 @@ function MobileNav() {
         </svg>
       </button>
       {open && (
-        <MobileModal>
+        <FullScreenMobileModal>
           <MobileNavItem href="/" text="Home" />
           <MobileNavItem href="/resume" text="Resume" />
           <MobileNavItem href="/projects" text="Projects" />
-        </MobileModal>
+        </FullScreenMobileModal>
       )}
     </>
   );
@@ -64,7 +65,7 @@ const MobileNavItem = ({ href, text }) => {
           isActive
             ? 'font-semibold text-gray-800 dark:text-gray-200'
             : 'font-normal text-gray-600 dark:text-gray-400'
-        } rounded-lg p-3 text-center text-xl`}
+        } rounded-lg p-3 text-center text-xl sm:hidden`}
       >
         <span className="capsize">{text}</span>
       </a>
@@ -83,7 +84,7 @@ const NavItem = ({ href, text }) => {
           isActive
             ? 'font-semibold text-gray-800 dark:text-gray-200'
             : 'font-normal text-gray-600 dark:text-gray-400'
-        } hidden rounded-lg sm:inline-block sm:px-3 sm:py-2 sm:hover:bg-gray-200 sm:dark:hover:bg-gray-800`}
+        } hidden rounded-lg p-3 sm:inline-block sm:hover:bg-gray-200 sm:dark:hover:bg-gray-800`}
       >
         <span className="capsize">{text}</span>
       </a>
@@ -100,12 +101,10 @@ const Header = () => {
     <div className="flex justify-center p-4 sm:flex-col">
       <nav>
         <div className="flex">
-          <div className="ml-[-0.60rem]" style={{ zIndex: 600 }}>
-            <MobileNav />
-            <NavItem href="/" text="Home" />
-            <NavItem href="/resume" text="Resume" />
-            <NavItem href="/projects" text="Projects" />
-          </div>
+          <MobileNav />
+          <NavItem href="/" text="Home" />
+          <NavItem href="/resume" text="Resume" />
+          <NavItem href="/projects" text="Projects" />
           <div className="flex flex-1 justify-end">
             <a
               aria-label="Email"
