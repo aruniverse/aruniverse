@@ -29,7 +29,7 @@ function MobileNav() {
         style={{ zIndex: 600 }}
       >
         <svg
-          className="h-6 w-6"
+          className="h-5 w-5"
           fill="none"
           viewBox="0 0 24 24"
           stroke="currentColor"
