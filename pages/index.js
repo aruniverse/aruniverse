@@ -29,7 +29,7 @@ const Home = () => {
           </p>
         </div>
 
-        <div className="mb-8 w-[200px] drop-shadow-2xl">
+        <div className="mb-8 w-[176px] drop-shadow-2xl">
           <Image
             alt="Arun George"
             height={400}
