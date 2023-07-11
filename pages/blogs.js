@@ -14,7 +14,7 @@ const Blog = (post) => {
   return (
     <div className="mb-6">
       <h2 className="text-lg">
-        <Link href={`/blogs/${post.slug}`}>
+        <Link href={`/blogs/${post.slug}`} legacyBehavior>
           <a className="text-blue-700 hover:text-blue-900">{post.title}</a>
         </Link>
       </h2>
